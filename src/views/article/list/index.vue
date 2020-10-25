@@ -67,7 +67,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.createdAt | formatComplete }}</span>
+          <span>{{ scope.row.updatedAt | formatComplete }}</span>
         </template>
       </el-table-column>
       <el-table-column

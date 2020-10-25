@@ -20,10 +20,10 @@
             clearable
           />
         </el-form-item>
-        <el-tooltip v-model="capsTooltip" content="大小写锁定已打开" placement="right" manual>
 
-          <el-form-item prop="password">
-            <p class="form-label">密码</p>
+        <el-form-item prop="password">
+          <p class="form-label">密码</p>
+          <el-tooltip v-model="capsTooltip" content="大小写锁定已打开" placement="right" manual>
             <el-input
               ref="password"
               v-model="formData.password"
@@ -34,8 +34,9 @@
               @blur="capsTooltip = false"
               @keyup.enter.native="handleLogin"
             />
-          </el-form-item>
-        </el-tooltip>
+          </el-tooltip>
+        </el-form-item>
+
       </el-form>
       <el-button
         type="primary"

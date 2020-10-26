@@ -15,6 +15,7 @@
       </span>
     </div>
     <el-table
+      v-loading="loading"
       :data="list"
       stripe
       style="width: 100%"
@@ -116,6 +117,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       search: {
         name: ''
       },
@@ -143,6 +145,7 @@ export default {
   },
   methods: {
     fetchList() {
+      this.loading = true
       getTagPage({
         page: this.pageInfo.page,
         pageSize: this.pageInfo.pageSize,
@@ -151,6 +154,8 @@ export default {
         const { total, list } = res
         this.list = list
         this.pageInfo.total = total
+      }).finally(() => {
+        this.loading = false
       })
     },
     handleSearch() {

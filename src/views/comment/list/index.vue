@@ -15,6 +15,7 @@
       </span>
     </div>
     <el-table
+      v-loading="loading"
       :data="list"
       stripe
       style="width: 100%"
@@ -36,7 +37,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          《{{ scope.row.article.title }}》
+          {{ scope.row.article.title }}
         </template>
       </el-table-column>
       <el-table-column
@@ -57,14 +58,6 @@
           </template>
         </template>
       </el-table-column>
-      <!-- <el-table-column
-        label="隐私类型"
-        align="center"
-      >
-        <template slot-scope="scope">
-          <el-tag class="tag" :type="scope.row.type===0?'':'info'">{{ scope.row.type | formatType }}</el-tag>
-        </template>
-      </el-table-column> -->
       <el-table-column
         label="评论时间"
         align="center"
@@ -80,7 +73,6 @@
         align="center"
       >
         <template slot-scope="scope">
-          <!-- <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button> -->
           <el-popconfirm
             class="ml-5"
             title="确定要删除吗？"
@@ -114,6 +106,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       search: {
         content: ''
       },
@@ -131,6 +124,7 @@ export default {
   },
   methods: {
     fetchList() {
+      this.loading = true
       getCommentPage({
         page: this.pageInfo.page,
         pageSize: this.pageInfo.pageSize,
@@ -139,6 +133,8 @@ export default {
         const { total, list } = res
         this.list = list
         this.pageInfo.total = total
+      }).finally(() => {
+        this.loading = false
       })
     },
     handleSearch() {

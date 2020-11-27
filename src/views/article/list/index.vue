@@ -163,6 +163,7 @@ export default {
         })
     },
     handleSearch() {
+      this.pageInfo.page = 1
       this.fetchList()
     },
     handleResetSearch() {

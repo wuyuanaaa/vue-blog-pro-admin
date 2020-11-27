@@ -16,7 +16,7 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         // target: 'https://blog.yuanaaa.top',
-        target: 'http://127.0.0.1:3000',
+        target: 'http://127.0.0.1:3003',
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: '/api'
@@ -53,7 +53,7 @@ module.exports = {
         config.devtool('cheap-module-eval-source-map')
       )
     config.when(process.env.NODE_ENV !== 'development', config => {
-      config
+      /* config
         .plugin('ScriptExtHtmlWebpackPlugin')
         .after('html')
         .use('script-ext-html-webpack-plugin', [
@@ -62,7 +62,7 @@ module.exports = {
             inline: /runtime\..*\.js$/
           }
         ])
-        .end()
+        .end() */
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
